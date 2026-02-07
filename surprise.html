@@ -12,58 +12,66 @@
     </audio>
 
     <div id="overlay" onclick="startExperience()">
-        <div class="glass-card">
-            <h1>🌹 Click to Open Your Gift, Motu</h1>
-            <p>(Turn up the volume! 🔊)</p>
+        <div class="glass-card animate-pulse">
+            <h1 class="floating">🌹</h1>
+            <h2>Touch the Rose, Motu</h2>
+            <p>A surprise is waiting for you...</p>
         </div>
     </div>
 
     <div class="container" id="mainContent" style="display:none;">
-        <h1 id="headline">Happy Rose Day, Jyoti ❤️</h1>
-        <div class="rose-container">🌹</div>
-        <p id="typed-text" class="message"></p>
+        <div class="emoji-wrap">
+            <span class="big-emoji animate-float">🌹</span>
+            <span class="big-emoji animate-float-delay">💖</span>
+        </div>
+        
+        <h1 id="headline" class="glow-text">Happy Rose Day, Jyoti!</h1>
+        
+        <div class="card-box">
+            <p id="typed-text" class="message"></p>
+        </div>
+
+        <div id="emoji-garden" class="garden">
+            </div>
+
         <div id="countdown" class="timer"></div>
     </div>
 
     <script>
         function startExperience() {
-            // Play Music
             const audio = document.getElementById('myMusic');
-            audio.play().catch(e => console.log("Audio play failed, waiting for interaction"));
+            audio.play().catch(e => console.log("Audio play failed"));
 
-            // Hide Overlay and Show Content
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
 
-            // Start Typewriter
             typeWriter();
-            
-            // Start Petals
-            setInterval(createPetal, 300);
-            
-            // Start Timer
+            setInterval(createFloatingEmoji, 200); // Constant emoji rain
             startTimer();
         }
 
-        // --- Keep your existing createPetal and typeWriter functions below ---
-        const text = "To my dearest Jyoti (Motu)... Just like a rose, you brought color into my world. Every day with you feels like a beautiful bloom. I love you! ❤️";
+        // Animated Emoji Rain
+        const emojis = ['🌹', '💖', '✨', '🌸', '🥰', '🍫', '🐷', '❤️'];
+        function createFloatingEmoji() {
+            const e = document.createElement('div');
+            e.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            e.className = 'floating-emoji';
+            e.style.left = Math.random() * 100 + 'vw';
+            e.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            e.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.body.appendChild(e);
+            setTimeout(() => e.remove(), 5000);
+        }
+
+        // Typewriter logic for Motu
+        const text = "To my dearest Jyoti... You are the most beautiful rose in the garden of my life. 🌹 My sweet Motu, I promise to keep you happy and blooming forever. Happy Rose Day! 💖✨";
         let i = 0;
         function typeWriter() {
             if (i < text.length) {
                 document.getElementById("typed-text").innerHTML += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, 100);
+                setTimeout(typeWriter, 70);
             }
-        }
-
-        function createPetal() {
-            const petal = document.createElement('div');
-            petal.innerHTML = '🌹';
-            petal.className = 'petal';
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(petal);
-            setTimeout(() => petal.remove(), 5000);
         }
 
         function startTimer() {
@@ -74,7 +82,7 @@
                 const h = Math.floor((diff % 86400000) / 3600000);
                 const m = Math.floor((diff % 3600000) / 60000);
                 const s = Math.floor((diff % 60000) / 1000);
-                document.getElementById("countdown").innerHTML = `Enjoying Rose Day for: ${h}h ${m}m ${s}s more`;
+                document.getElementById("countdown").innerHTML = `Celebrating our love for: ${h}h ${m}m ${s}s more`;
             }, 1000);
         }
     </script>
