@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Rose Day, Jyoti!</title>
+    <title>For My Motu ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="startExperience()">
-    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0" style="display:none"></iframe>
+<body>
+    <audio id="myMusic" loop>
+        <source src="romantic.mp3" type="audio/mpeg">
+    </audio>
 
-    <div class="container">
+    <div id="overlay" onclick="startExperience()">
+        <div class="glass-card">
+            <h1>🌹 Click to Open Your Gift, Motu</h1>
+            <p>(Turn up the volume! 🔊)</p>
+        </div>
+    </div>
+
+    <div class="container" id="mainContent" style="display:none;">
         <h1 id="headline">Happy Rose Day, Jyoti ❤️</h1>
         <div class="rose-container">🌹</div>
         <p id="typed-text" class="message"></p>
@@ -17,19 +26,26 @@
     </div>
 
     <script>
-        // Falling Petals Logic
-        function createPetal() {
-            const petal = document.createElement('div');
-            petal.innerHTML = '🌹';
-            petal.className = 'petal';
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(petal);
-            setTimeout(() => petal.remove(), 5000);
-        }
-        setInterval(createPetal, 300);
+        function startExperience() {
+            // Play Music
+            const audio = document.getElementById('myMusic');
+            audio.play().catch(e => console.log("Audio play failed, waiting for interaction"));
 
-        // Typewriter Effect
+            // Hide Overlay and Show Content
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+
+            // Start Typewriter
+            typeWriter();
+            
+            // Start Petals
+            setInterval(createPetal, 300);
+            
+            // Start Timer
+            startTimer();
+        }
+
+        // --- Keep your existing createPetal and typeWriter functions below ---
         const text = "To my dearest Jyoti (Motu)... Just like a rose, you brought color into my world. Every day with you feels like a beautiful bloom. I love you! ❤️";
         let i = 0;
         function typeWriter() {
@@ -40,14 +56,22 @@
             }
         }
 
-        // Countdown Logic
-        function startExperience() {
-            typeWriter();
-            const timer = setInterval(() => {
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.innerHTML = '🌹';
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 5000);
+        }
+
+        function startTimer() {
+            setInterval(() => {
                 const now = new Date().getTime();
                 const end = new Date("Feb 8, 2026 00:00:00").getTime();
                 const diff = end - now;
-                const h = Math.floor((diff % (86400000)) / 3600000);
+                const h = Math.floor((diff % 86400000) / 3600000);
                 const m = Math.floor((diff % 3600000) / 60000);
                 const s = Math.floor((diff % 60000) / 1000);
                 document.getElementById("countdown").innerHTML = `Enjoying Rose Day for: ${h}h ${m}m ${s}s more`;
