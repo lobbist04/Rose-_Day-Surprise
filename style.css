@@ -1,68 +1,37 @@
-body {
-    background: radial-gradient(circle, #2d0505, #000000);
+/* Surprise Button Styling */
+#confettiBtn {
+    background: linear-gradient(45deg, #ff4d6d, #ff758f);
     color: white;
-    font-family: 'Trebuchet MS', sans-serif;
-    margin: 0;
-    overflow-x: hidden;
-    height: 100vh;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+    transition: 0.3s;
+    font-weight: bold;
+    margin-top: 20px;
+    animation: heartbeat 1.5s infinite;
 }
 
-.glow-text {
-    font-size: 3rem;
-    color: #fff;
-    text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff4d6d, 0 0 40px #ff4d6d;
-    animation: glow-pulse 2s infinite alternate;
+#confettiBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(255, 77, 109, 0.8);
 }
 
-@keyframes glow-pulse {
-    from { opacity: 0.8; transform: scale(1); }
-    to { opacity: 1; transform: scale(1.05); }
-}
-
-.card-box {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    border-radius: 30px;
-    padding: 30px;
-    margin: 20px;
-    border: 1px solid rgba(255, 77, 109, 0.3);
-    box-shadow: 0 0 50px rgba(255, 77, 109, 0.2);
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.1); }
+    20% { transform: scale(1); }
+    30% { transform: scale(1.1); }
+    40% { transform: scale(1); }
 }
 
 .floating-emoji {
     position: fixed;
     top: -10%;
     z-index: 1;
+    font-size: 25px;
     animation: fall linear forwards;
     pointer-events: none;
-}
-
-@keyframes fall {
-    to { transform: translateY(110vh) rotate(360deg); }
-}
-
-.big-emoji {
-    font-size: 80px;
-    display: inline-block;
-}
-
-.animate-float {
-    animation: floating 3s ease-in-out infinite;
-}
-
-.animate-float-delay {
-    animation: floating 3s ease-in-out infinite;
-    animation-delay: 1.5s;
-}
-
-@keyframes floating {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-30px); }
-}
-
-.timer {
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    color: #ffb3c1;
-    margin-top: 30px;
 }
