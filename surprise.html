@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Motu ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <audio id="myMusic" loop>
@@ -15,7 +16,7 @@
         <div class="glass-card animate-pulse">
             <h1 class="floating">🌹</h1>
             <h2>Touch the Rose, Motu</h2>
-            <p>A surprise is waiting for you...</p>
+            <p>I have a secret for you...</p>
         </div>
     </div>
 
@@ -31,26 +32,21 @@
             <p id="typed-text" class="message"></p>
         </div>
 
-        <div id="emoji-garden" class="garden">
-            </div>
+        <button id="confettiBtn" onclick="fireConfetti()">Click for a Hug! 🤗</button>
 
         <div id="countdown" class="timer"></div>
     </div>
 
     <script>
         function startExperience() {
-            const audio = document.getElementById('myMusic');
-            audio.play().catch(e => console.log("Audio play failed"));
-
+            document.getElementById('myMusic').play().catch(e => console.log("Audio play failed"));
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
-
             typeWriter();
-            setInterval(createFloatingEmoji, 200); // Constant emoji rain
+            setInterval(createFloatingEmoji, 250);
             startTimer();
         }
 
-        // Animated Emoji Rain
         const emojis = ['🌹', '💖', '✨', '🌸', '🥰', '🍫', '🐷', '❤️'];
         function createFloatingEmoji() {
             const e = document.createElement('div');
@@ -58,20 +54,45 @@
             e.className = 'floating-emoji';
             e.style.left = Math.random() * 100 + 'vw';
             e.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            e.style.fontSize = (Math.random() * 20 + 20) + 'px';
             document.body.appendChild(e);
             setTimeout(() => e.remove(), 5000);
         }
 
-        // Typewriter logic for Motu
         const text = "To my dearest Jyoti... You are the most beautiful rose in the garden of my life. 🌹 My sweet Motu, I promise to keep you happy and blooming forever. Happy Rose Day! 💖✨";
         let i = 0;
         function typeWriter() {
             if (i < text.length) {
                 document.getElementById("typed-text").innerHTML += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, 70);
+                setTimeout(typeWriter, 60);
             }
+        }
+
+        // CONFETTI BURST FUNCTION
+        function fireConfetti() {
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+              confetti({
+                particleCount: 5,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                colors: ['#ff4d6d', '#ffffff', '#ffb3c1']
+              });
+              confetti({
+                particleCount: 5,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                colors: ['#ff4d6d', '#ffffff', '#ffb3c1']
+              });
+
+              if (Date.now() < end) {
+                requestAnimationFrame(frame);
+              }
+            }());
         }
 
         function startTimer() {
@@ -82,7 +103,7 @@
                 const h = Math.floor((diff % 86400000) / 3600000);
                 const m = Math.floor((diff % 3600000) / 60000);
                 const s = Math.floor((diff % 60000) / 1000);
-                document.getElementById("countdown").innerHTML = `Celebrating our love for: ${h}h ${m}m ${s}s more`;
+                document.getElementById("countdown").innerHTML = `${h}h ${m}m ${s}s left of Rose Day`;
             }, 1000);
         }
     </script>
