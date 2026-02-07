@@ -58,16 +58,15 @@
             setTimeout(() => e.remove(), 5000);
         }
 
-        const text = "To my dearest Jyoti... You are the most beautiful rose in the garden of my life. 🌹 My sweet Motu, I promise to keep you happy and blooming forever. Happy Rose Day! 💖✨";
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typed-text").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 60);
-            }
-        }
-
+       const text = "To my dearest Jyoti... You are the most beautiful rose in the garden of my life. 🌹 My sweet Motu, I promise to keep you happy and blooming forever. Happy Rose Day! and I love you 💖✨";
+       let i = 0;
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typed-text").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 80); 
+    }
+}
         // CONFETTI BURST FUNCTION
         function fireConfetti() {
             var duration = 3 * 1000;
