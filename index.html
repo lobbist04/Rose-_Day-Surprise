@@ -15,12 +15,25 @@
     </div>
 
     <script>
-        function checkPass() {
-            const pass = document.getElementById('passInput').value.toLowerCase();
-            if(pass === 'motu') {
-                window.location.href = "surprise.html";
-            } else {
-                alert("Only Motu can enter here! 🐷 Try again.");
+       function checkPass() {
+    const pass = document.getElementById('passInput').value;
+    
+    if(pass === 'Motu' || pass === 'motu') {
+        window.location.href = "surprise.html";
+    } else {
+        // The Funny Messages
+        const funnyMessages = [
+            "Wait... you're not my Motu! 🤨 Where is she??",
+            "Access Denied! 🚫 Only the cutest person in the world knows this password.",
+            "Wrong password! 🐷 Try again or I'm calling the Rose Police! 👮‍♂️🌹",
+            "Hey! Stop trying to hack my heart! 😤 Only Motu allowed.",
+            "Incorrect. Hint: It starts with 'M' and ends with 'you being cute'. 😉"
+        ];
+
+        // This picks a random funny message from the list above
+        const randomMessage = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+        
+        alert(randomMessage);
             }
         }
     </script>
