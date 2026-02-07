@@ -1,0 +1,54 @@
+body {
+    background: radial-gradient(circle, #2b0b0b, #000000);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rose-container {
+    font-size: 100px;
+    animation: grow 2s ease-in-out;
+}
+
+.petal {
+    position: fixed;
+    top: -10%;
+    animation: fall linear forwards;
+    z-index: 100;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+
+@keyframes grow {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+.message {
+    font-size: 1.5rem;
+    max-width: 80%;
+    margin: 20px auto;
+    font-style: italic;
+    color: #ffcccc;
+}
+
+.timer {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #ff4d6d;
+}
