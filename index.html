@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Gift for Someone Special</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-card">
+        <h2>🌹 To My Favorite Person</h2>
+        <p>Enter the secret password to unlock your surprise:</p>
+        <input type="password" id="passInput" placeholder="Hint: Your nickname...">
+        <button onclick="checkPass()">Unlock My Heart</button>
+    </div>
+
+    <script>
+        function checkPass() {
+            const pass = document.getElementById('passInput').value.toLowerCase();
+            if(pass === 'motu') {
+                window.location.href = "surprise.html";
+            } else {
+                alert("Only Motu can enter here! 🐷 Try again.");
+            }
+        }
+    </script>
+</body>
+</html>
