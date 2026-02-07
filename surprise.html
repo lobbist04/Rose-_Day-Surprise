@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day, Jyoti!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="startExperience()">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0" style="display:none"></iframe>
+
+    <div class="container">
+        <h1 id="headline">Happy Rose Day, Jyoti ❤️</h1>
+        <div class="rose-container">🌹</div>
+        <p id="typed-text" class="message"></p>
+        <div id="countdown" class="timer"></div>
+    </div>
+
+    <script>
+        // Falling Petals Logic
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.innerHTML = '🌹';
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 5000);
+        }
+        setInterval(createPetal, 300);
+
+        // Typewriter Effect
+        const text = "To my dearest Jyoti (Motu)... Just like a rose, you brought color into my world. Every day with you feels like a beautiful bloom. I love you! ❤️";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typed-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        // Countdown Logic
+        function startExperience() {
+            typeWriter();
+            const timer = setInterval(() => {
+                const now = new Date().getTime();
+                const end = new Date("Feb 8, 2026 00:00:00").getTime();
+                const diff = end - now;
+                const h = Math.floor((diff % (86400000)) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                document.getElementById("countdown").innerHTML = `Enjoying Rose Day for: ${h}h ${m}m ${s}s more`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
